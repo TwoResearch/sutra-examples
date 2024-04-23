@@ -1,0 +1,17 @@
+# build folder
+**/dist
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+*.tags
+*.swp
+**/data/*
+*.vscode
+
