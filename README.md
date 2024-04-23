@@ -52,12 +52,12 @@ For obtaining an API key contact: `support@two.ai`. The documentation can be acc
 
 4. List of available endpoints and models: 
 
-| endpoint url                                     | model                               |
-|--------------------------------------------------|-------------------------------------|
-| https://api.two.ai/v1/sutra-light/completion     | sutra-light                         |
-| https://api.two.ai/v1/sutra-pro/completion       | sutra-pro                           |
-| https://api.two.ai/v1/sutra-turbo/completion     | sutra-turbo                         |
-| https://api.two.ai/v1/sutra-online/completion    | sutra-online                        |
+| endpoint url                                      | model        |
+|---------------------------------------------------|--------------|
+| [https://api.two.ai/v1/sutra-light/completion]()  | sutra-light  |
+| [https://api.two.ai/v1/sutra-pro/completion]()    | sutra-pro    |
+| [https://api.two.ai/v1/sutra-turbo/completion]()  | sutra-turbo  |
+| [https://api.two.ai/v1/sutra-online/completion]() | sutra-online |
 
 ## Contributions and Feedback
 
