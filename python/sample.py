@@ -4,12 +4,15 @@
 import requests
 import os
 
+from stream_decoder import StreamDecoder
+from example_util import ExampleUtil
+
 url = "https://api.two.ai/v1/sutra-light/completion"
 
 payload = {
     "model": "sutra-light",
     "messages": [
-        {"role": "user", "content": "How many boroughs in New York City?"}
+        {"role": "user", "content": "मुझे मंगल ग्रह के बारे में 5 पैराग्राफ दीजिए"}
     ]
 }
 headers = {
@@ -18,9 +21,13 @@ headers = {
     "Accept": "application/x-ndjson"
 }
 
-response = requests.request("POST", url, json=payload, headers=headers)
+response = requests.request("POST", url, json=payload, headers=headers, stream=True)
+stream_decoder = StreamDecoder()
+for stream_chunk in response:
+    llm_chunks = stream_decoder.decode(stream_chunk)
+    for llm_chunk in llm_chunks:
+        ExampleUtil.output(llm_chunk)
 
-print(response.text)
 
 # ---
 # sutra-online
@@ -40,6 +47,9 @@ payload = {
     }
 }
 
-response = requests.request("POST", url, json=payload, headers=headers)
-
-print(response.text)
+response = requests.request("POST", url, json=payload, headers=headers, stream=True)
+stream_decoder = StreamDecoder()
+for stream_chunk in response:
+    llm_chunks = stream_decoder.decode(stream_chunk)
+    for llm_chunk in llm_chunks:
+        ExampleUtil.output(llm_chunk)

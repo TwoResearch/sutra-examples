@@ -6,8 +6,7 @@ This directory contains TypeScript samples for API testing.
 1. Install Node.js and npm.
 2. Install TypeScript and any necessary typings:
    ```bash
-   npm install -g typescript
-   npm install
+   npm ci
    ```
 
 ## Running the Samples
