@@ -1,5 +1,18 @@
+*~
+# Python
+**/__pycache__
+*.pyc
+*.egg-info
+
+# Ignore vscode files
+*.vscode/
+
+# Ignore tox files
+*.tox
+
 # build folder
 **/dist
+*/build/*
 
 # Dependency directories
 node_modules/
@@ -13,5 +26,3 @@ node_modules/
 *.tags
 *.swp
 **/data/*
-*.vscode
-

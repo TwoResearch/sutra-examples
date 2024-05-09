@@ -1,9 +1,11 @@
 // ---
 // sutra-light, sutra-pro, sutra-turbo
 
+import { StreamDecoder } from './StreamDecoder';
+import { ExampleUtil } from './ExampleUtil';
 import axios, { AxiosRequestConfig } from 'axios';
 
-async function main() {
+async function testSutra() {
     const cfg: AxiosRequestConfig = {
             headers: {
                 Authorization: process.env.SUTRA_API_KEY,
@@ -17,23 +19,25 @@ async function main() {
 
     const body = {
         model: 'sutra-light',
-        messages: [ { role: 'user', content: 'How many boroughs in New York City?' } ]
+        messages: [ { role: 'user', content: 'मुझे मंगल ग्रह के बारे में 5 पैराग्राफ दीजिए' } ]
     }
 
+    const streamDecoder = new StreamDecoder();
     const reply = await axios.post(url, body, cfg);
     const stream = reply.data;
 
-    for await (const chunk of stream) {
-        console.log(chunk.toString());
+    for await (const streamChunk of stream) {
+        const llmChunks = streamDecoder.decode(streamChunk);
+        for (const llmChunk of llmChunks) {
+            await ExampleUtil.output(llmChunk);
+        }
     }
 }
-
-(async () => await main())();
 
 // ---
 // sutra-online
 
-async function mainOnline() {
+async function testSutraOnline() {
     const cfg: AxiosRequestConfig = {
             headers: {
                 Authorization: process.env.SUTRA_API_KEY,
@@ -51,12 +55,20 @@ async function mainOnline() {
         searchLocation: {uule:"w+CAIQICIMTXVtYmFpLEluZGlh",countryCode:"IN",languageCode:"hi"},
     }
 
+    const streamDecoder = new StreamDecoder();
     const reply = await axios.post(url, body, cfg);
     const stream = reply.data;
 
-    for await (const chunk of stream) {
-        console.log(chunk.toString());
+    for await (const streamChunk of stream) {
+        const llmChunks = streamDecoder.decode(streamChunk);
+        for (const llmChunk of llmChunks) {
+            await ExampleUtil.output(llmChunk);
+        }
     }
 }
 
-(async () => await mainOnline())();
+(async (): Promise<void> => {
+    await testSutra();
+    await testSutraOnline();
+    process.exit(0);
+})();
