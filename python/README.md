@@ -4,8 +4,8 @@ This directory contains sample scripts demonstrating how to test APIs using Pyth
 
 ## Environment Setup
 ```bash
-conda create -y -n sutra-docs-samples python=3.8
-conda activate sutra-docs-samples
+conda create -y -n sutra-examples python=3.8
+conda activate sutra-examples
 pip install -r requirements.txt
 ```
 
